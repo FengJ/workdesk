@@ -1,11 +1,18 @@
 package org.me.security;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /*
@@ -23,13 +30,28 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class MyUsernamePasswordAuthenticationFilter extends
 		UsernamePasswordAuthenticationFilter {
 	public static final String VALIDATE_CODE = "validateCode";
-	public static final String USERNAME = "username";
-	public static final String PASSWORD = "password";
+	public static final String USERNAME = "j_username";
+	public static final String PASSWORD = "p_password";
+
+	@Autowired
+	private UserDetailsService userDetailsService;
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request,
 			HttpServletResponse response) throws AuthenticationException {
-		return null;
+		System.out.println("MyUsernamePasswordAuthenticationFilter");
+		String username = obtainUsername(request);
+		String password = obtainPassword(request);
+		UserDetails userDetails = userDetailsService
+				.loadUserByUsername(username);
+		if(userDetails.getUsername() == null){
+			throw new UsernameNotFoundException("用户不存在");
+		}
+		if (password.equals(userDetails.getPassword())) {
+			return new UsernamePasswordAuthenticationToken(username,
+					userDetails.getPassword());
+		}
+		throw new BadCredentialsException("Bad Credentials");
 	}
 
 	protected void checkValidateCode(HttpServletRequest request) {

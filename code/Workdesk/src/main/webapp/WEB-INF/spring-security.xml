@@ -17,7 +17,8 @@
 		<intercept-url pattern="/**/*.ecss" filters="none" />
 		<intercept-url pattern="/**/*.js" filters="none" />
 		<intercept-url pattern="/rfRes/**" filters="none" />
-		<intercept-url pattern="/javax.faces.resource/**" filters="none" />
+		<intercept-url pattern="/javax.faces.resource/**"
+			filters="none" />
 		<remember-me />
 		<session-management invalid-session-url="/timeout.jsp">
 			<concurrency-control max-sessions="10"
@@ -59,8 +60,13 @@
 	</beans:bean>
 	<!-- 实现了UserDetailsService的Bean -->
 	<authentication-manager alias="myAuthenticationManager">
-		<authentication-provider user-service-ref="myUserDetailServiceImpl" />
+		<authentication-provider ref="myAuthenticationProvider"/>
+		<authentication-provider user-service-ref="myUserDetailServiceImpl">
+		</authentication-provider>
 	</authentication-manager>
+
+	<beans:bean id="myAuthenticationProvider" class="org.me.security.MyAuthenticationProvider">
+	</beans:bean>
 
 	<beans:bean id="myAccessDecisionManager" class="org.me.security.MyAccessDecisionManager"></beans:bean>
 	<beans:bean id="mySecurityMetadataSource" class="org.me.security.MySecurityMetadataSource">
@@ -71,6 +77,6 @@
 	<!-- 未登录的切入点 -->
 	<beans:bean id="authenticationProcessingFilterEntryPoint"
 		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-		<beans:property name="loginFormUrl" value="/login.jsp"></beans:property>
+		<beans:property name="loginFormUrl" value="/login.jsf"></beans:property>
 	</beans:bean>
 </beans:beans>

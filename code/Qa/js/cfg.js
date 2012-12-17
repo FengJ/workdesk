@@ -6,10 +6,14 @@ KEditor.cfg = {
 	height : 340
 };
 
+var SYS = {};
 
-var Account = {};
+SYS.cfg = {
+	URL : 'http://localhost:8080/Workdesk'
+};
 
-Account.cfg = {
-	autoLogin : false,
+Acc.cfg = {
+	USERNAME_TEMP : '电子邮件地址',
+	LOGIN_URL : SYS.cfg.URL+'/security/login'
 };
 

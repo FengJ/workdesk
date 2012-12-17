@@ -540,7 +540,7 @@ ul {
 	margin-right: 40px;
 }
 
-#login_div_form input[type="text"]{
+#login_div_form input[type="text"],input[type="password"]{
 	background-color: #666666;
 	border-radius: 0px;
 	height: 22px;

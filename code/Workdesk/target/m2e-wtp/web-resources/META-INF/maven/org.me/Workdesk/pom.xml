@@ -5,7 +5,8 @@
 	<artifactId>Workdesk</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
+	
+	
 	<repositories>
 		<repository>
 			<id>com.springsource.repository.bundles.release</id>

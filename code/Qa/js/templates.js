@@ -44,7 +44,7 @@ Templates = {
 		'<div id="ques_right"><div id="ques_tips_hot"><span>我的标签</span></div><div id="tips_hot"></div></div>'
 	],
 	// 登录界面
-	login_html : '<div class="login_gray"></div><div class="login_div"><div id="login_div_head"><div id="login_back"></div></div><div id="login_div_form"><p class="title">Login</p><p><input type="text" id="username" /></p><p><input type="text" id="password" /></p><p><button id="login">LOG IN</button> <button id="login_cancel">CANCEL</button></p><p><input type="checkbox" id="remeberme" />记住我的密码</p></div></div>',
+	login_html : '<div class="login_gray"></div><div class="login_div"><div id="login_div_head"><div id="login_back"></div></div><div id="login_div_form"><form method="POST" id="loginform"><p class="title">Login</p><p><input type="text" id="username" /></p><p><input type="password" id="password" /></p><p><button id="login">LOG IN</button> <button id="login_cancel">CANCEL</button></p><p><input type="checkbox" id="remeberme" />记住我的密码</p></form></div></div>',
 	end:''
 };
 

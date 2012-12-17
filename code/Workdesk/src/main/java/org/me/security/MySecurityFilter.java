@@ -18,10 +18,10 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 
 public class MySecurityFilter extends AbstractSecurityInterceptor implements
 		Filter {
-	
-	//与applicationContext-security.xml里的myFilter的属性securityMetadataSource对应，
-		//其他的两个组件，已经在AbstractSecurityInterceptor定义
-		private FilterInvocationSecurityMetadataSource securityMetadataSource;
+
+	// 与applicationContext-security.xml里的myFilter的属性securityMetadataSource对应，
+	// 其他的两个组件，已经在AbstractSecurityInterceptor定义
+	private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
 	@Override
 	public Class<? extends Object> getSecureObjectClass() {
@@ -57,7 +57,7 @@ public class MySecurityFilter extends AbstractSecurityInterceptor implements
 		// this.accessDecisionManager.decide(authenticated, object, attributes);
 		InterceptorStatusToken token = super.beforeInvocation(fi);
 		try {
-			System.out.println("Filter:---"+fi.getFullRequestUrl());
+			System.out.println("Filter:---" + fi.getFullRequestUrl());
 			fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
 		} finally {
 			super.afterInvocation(token, null);
@@ -65,15 +65,16 @@ public class MySecurityFilter extends AbstractSecurityInterceptor implements
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig config) throws ServletException {
 
 	}
-	
+
 	public FilterInvocationSecurityMetadataSource getSecurityMetadataSource() {
 		return securityMetadataSource;
 	}
 
-	public void setSecurityMetadataSource(FilterInvocationSecurityMetadataSource securityMetadataSource) {
+	public void setSecurityMetadataSource(
+			FilterInvocationSecurityMetadataSource securityMetadataSource) {
 		this.securityMetadataSource = securityMetadataSource;
 	}
 

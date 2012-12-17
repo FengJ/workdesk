@@ -1,0 +1,29 @@
+question 问题表
+guid varchar 主键
+title varchar 标题
+author varchar 作者
+content varchar 内容
+createDate DateTime 创建日期
+updateDate DateTime 修改日期
+category varchar 类别
+tag varchar 标签(多个标签使用;隔开)
+addition varchar 补充说明
+
+answer 回答表
+guid varchar 主键
+questionGuid varchar 问题Guid
+author varchar 作者
+content varchar 回复内容
+createDate DateTime 创建日期
+updateDate DateTime 修改日期
+help int 有帮助
+nohelp int 没帮助
+answerGuid varchar 引用的回答Guid
+
+comment 评论表
+guid varchar 主键
+answerGuid varchar 评论的回答Guid
+author varchar 作者
+content varchar 内容
+createDate DateTime 创建日期
+updateDate DateTime 修改日期
